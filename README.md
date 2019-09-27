@@ -1,43 +1,48 @@
-<!-- 
-First things first:
-* Make sure the repo only allows 'squash and merge' on the settings panel.
-* Set head branches to be deleted after a PR is merged
-* Consider adding code analysis to the repo, including using dependabot
-* Add branch protection rules to `master` and block direct pushing to master and only allow via approved PRs.
-* Make sure there are issue labels for 'bug', 'epic' and project sizes ('S','M','L' will do)
-* Add tooling from the relevant gist for linting
-* Setup pre-production hosting
-* Make sure there's a slack channel and that deploybot and github are integrated
-* Ensure the CI config looks OK
-* Edit this document to be relevant
-* Delete this commment
--->
+# Multi Window Video
 
-<!-- Badges go here - e.g. CircleCI -->
-# Project Name
-
-> Project short description
+A tool to allow videos to be triggered and synchronized across multiple browser windows. The user can press a key on the keyboard to trigger various videos.
 
 <!-- A screenshot of the project -->
 
 ## Contacts and documents
 
-Who is involved in the project? Where are the designs and other working files?
+John Chipps-Harding (john@signal-noise.co.uk)
 
 ## Architecture
 
-Description and perhaps diagram of how the project works, based on the first 2 
-or 3 levels of the https://c4model.com/.
+This project runs in multiple browser windows on the same machine. They communicate using the standard `BroadcastChannel` system.
 
 ### Specifics
 
-For each main component (e.g. `client`), a run-down of the technologies and 
-general approach, as well as any watch-outs.
+Place videos within the `/videos` folder and configure the system by changing the config object within `/src/index.js`.
+
+Example config:
+```javascript
+const config = {
+  videos: [
+    {
+      key: "1",
+      src: ["./videos/w1_v1.mp4", "./videos/w2_v1.mp4", "./videos/w3_v1.mp4"]
+    },
+    {
+      key: "2",
+      src: ["./videos/w1_v2.mp4", "./videos/w2_v2.mp4", "./videos/w3_v2.mp4"]
+    }
+  ]
+};
+```
+
+> Each object in the `videos` array defines what videos should play on each browser and what "key" should be used to trigger them. The `src` lists what videos play on each browser.
 
 ## Getting started
 
-Guide to getting going on the project; how to get a development environment 
-sorted out.
+Follow these steps to get up and running:
+
+1. Run `npm i` to install all dependencies.
+2. Run `npm start` to launch the system.
+3. Open as many browser windows as required and append a querystring onto URL to specify what `window` the browser is. E.g. a URL may be `http://localhost:8080?window=1`.
+
+> Note: Windows are zero indexed, so the first window is **0**.
 
 ## Rules and tools
 

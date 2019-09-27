@@ -1,0 +1,59 @@
+{
+  "name": "multi-window-video",
+  "version": "0.0.1",
+  "description": "A tool to allow video to be triggered and synchronized across browser videos.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" || exit true",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:js": "eslint \"**/*.js\"",
+    "lint:import": "import-sort -l 'src/**/*.{js,jsx}'",
+    "lint:format": "prettier \"**/*.{js,md,html,json,yaml,yml}\" --check",
+    "fix": "npm-run-all --sequential fix:*",
+    "fix:js": "eslint \"**/*.js\" --fix",
+    "fix:import": "import-sort --write 'src/**/*.{js,jsx}'",
+    "fix:format": "prettier \"**/*.{js,md,html,json,yaml,yml}\" --write",
+    "depcheck": "npm-check --update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/signal-noise/multi-window.video.git"
+  },
+  "author": "John Chipps-Harding (john@signal-noise.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/signal-noise/multi-window.video/issues"
+  },
+  "homepage": "https://github.com/signal-noise/multi-window.video#readme",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie 11"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "eslint": "^6.4.0",
+    "file-loader": "^4.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-parser-babylon": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
+    "npm-check": "^5.9.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "terser-webpack-plugin": "^2.1.1",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "dependencies": {}
+}
