@@ -36,6 +36,8 @@ export default class Controller {
         this.changeVideo(this.currentIndex);
       });
     }
+
+    this.video.addEventListener("click", () => this.video.requestFullscreen());
   }
 
   setupBroadcaster() {
