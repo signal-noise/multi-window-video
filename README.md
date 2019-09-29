@@ -21,18 +21,38 @@ Example config:
 const config = {
   videos: [
     {
+       // What keyboard key to press to trigger this state
       key: "1",
+
+       // A list of videos to play on each screen. This example supports 3 screens.
       src: ["./videos/w1_v1.mp4", "./videos/w2_v1.mp4", "./videos/w3_v1.mp4"]
     },
     {
       key: "2",
       src: ["./videos/w1_v2.mp4", "./videos/w2_v2.mp4", "./videos/w3_v2.mp4"]
     }
-  ]
+  ],
+
+  // If true, all videos are muted, if false all but the first window will be muted.
+  mute: false,
+
+  // See below
+  reloadOnEnd: false,
+
+  sync: {
+    // How often to check sync (2 seconds)
+    interval: 2,
+
+    // How much difference there can be before a sync is triggered.
+    threshold: 0.3,
+
+    // How much time at the beginning of the clip to ignore syncing.
+    ignore: 1
+  }
 };
 ```
 
-> Each object in the `videos` array defines what videos should play on each browser and what "key" should be used to trigger them. The `src` lists what videos play on each browser.
+> **reloadOnEnd**: If `false`, it will rely on the browser natively looping the video. This can lead to sync issues. If `true`, when the video finishes it will force a reload of the video. Generally this leads to better sync but a 'flash' can be seen when reloading (fade to black to avoid this artifact).
 
 ## Getting started
 

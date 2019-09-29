@@ -1,8 +1,7 @@
 export default class Controller {
-  constructor(root, config) {
+  constructor(videoSelector, config) {
     // Set DOM References
-    this.root = document.querySelector(root);
-    this.video = this.root.querySelector("video");
+    this.video = document.querySelector(videoSelector);
     this.videoSource = this.video.querySelector("source");
 
     // Save the config object
@@ -13,14 +12,62 @@ export default class Controller {
     this.windowIndex = parseInt(urlParams.get("window"));
     if (isNaN(this.windowIndex)) this.windowIndex = 0;
 
+    this.setupVideo();
     this.setupBroadcaster();
     this.setupListeners();
   }
 
+  setupVideo() {
+    this.video.autoplay = true;
+
+    if (this.config.muted || this.windowIndex > 0) this.video.muted = true;
+
+    if (!this.config.reloadOnEnd) this.video.loop = true;
+
+    if (this.windowIndex === 0 && this.config.reloadOnEnd) {
+      this.video.addEventListener("ended", () => {
+        // Broadcast the index
+        this.broadcaster.postMessage({
+          type: "changeVideo",
+          videoIndex: this.currentIndex
+        });
+
+        // Change the video locally
+        this.changeVideo(this.currentIndex);
+      });
+    }
+  }
+
   setupBroadcaster() {
     this.broadcaster = new BroadcastChannel("sn-presentation");
+    this.broadcaster.onmessage = ev => {
+      switch (ev.data.type) {
+        case "changeVideo": {
+          this.changeVideo(ev.data.videoIndex);
+          break;
+        }
+        case "seek": {
+          const diff = this.video.currentTime - ev.data.currentTime;
+          if (
+            this.video.currentTime > this.config.sync.ignore &&
+            ev.data.currentTime > this.config.sync.ignore &&
+            Math.abs(diff) > this.config.sync.threshold
+          ) {
+            // console.log("RESYNC!");
+            this.video.currentTime = ev.data.currentTime;
+          }
+          break;
+        }
+      }
+    };
 
-    this.broadcaster.onmessage = ev => this.changeVideo(ev.data.videoIndex);
+    if (this.windowIndex !== 0) return;
+    setInterval(() => {
+      this.broadcaster.postMessage({
+        type: "seek",
+        currentTime: this.video.currentTime
+      });
+    }, this.config.sync.interval * 1000);
   }
 
   setupListeners() {
@@ -37,7 +84,7 @@ export default class Controller {
       if (videoIndex === -1) return;
 
       // Broadcast the index
-      this.broadcaster.postMessage({ videoIndex });
+      this.broadcaster.postMessage({ type: "changeVideo", videoIndex });
 
       // Change the video locally
       this.changeVideo(videoIndex);
@@ -45,11 +92,12 @@ export default class Controller {
   }
 
   changeVideo(index) {
+    this.currentIndex = index;
     // Get the video for the specific window
     const video = this.config.videos[index].src[this.windowIndex];
 
     // Set the video and play!
-    this.videoSource.setAttribute("src", video);
+    this.videoSource.src = video;
     this.video.load();
   }
 }
