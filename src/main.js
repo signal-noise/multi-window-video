@@ -19,9 +19,7 @@ export default class Controller {
 
   setupVideo() {
     this.video.autoplay = true;
-
     if (this.config.muted || this.windowIndex > 0) this.video.muted = true;
-
     if (!this.config.reloadOnEnd) this.video.loop = true;
 
     if (this.windowIndex === 0 && this.config.reloadOnEnd) {
@@ -29,11 +27,11 @@ export default class Controller {
         // Broadcast the index
         this.broadcaster.postMessage({
           type: "changeVideo",
-          videoIndex: this.currentIndex
+          videoIndex: this._currentVideo
         });
 
         // Change the video locally
-        this.changeVideo(this.currentIndex);
+        this.currentVideo = this.currentVideo;
       });
     }
 
@@ -45,7 +43,7 @@ export default class Controller {
     this.broadcaster.onmessage = ev => {
       switch (ev.data.type) {
         case "changeVideo": {
-          this.changeVideo(ev.data.videoIndex);
+          this.currentVideo = ev.data.videoIndex;
           break;
         }
         case "seek": {
@@ -89,12 +87,17 @@ export default class Controller {
       this.broadcaster.postMessage({ type: "changeVideo", videoIndex });
 
       // Change the video locally
-      this.changeVideo(videoIndex);
+      this.currentVideo = videoIndex;
     });
   }
 
-  changeVideo(index) {
-    this.currentIndex = index;
+  get currentVideo() {
+    return this._currentVideo;
+  }
+
+  set currentVideo(index) {
+    this._currentVideo = index;
+
     // Get the video for the specific window
     const video = this.config.videos[index].src[this.windowIndex];
 
