@@ -46,7 +46,7 @@ export default class Controller {
           this.currentVideo = ev.data.videoIndex;
           break;
         }
-        case "seek": {
+        case "sync": {
           const diff = this.video.currentTime - ev.data.currentTime;
           if (
             this.video.currentTime > this.config.sync.ignore &&
@@ -64,7 +64,7 @@ export default class Controller {
     if (this.windowIndex !== 0) return;
     setInterval(() => {
       this.broadcaster.postMessage({
-        type: "seek",
+        type: "sync",
         currentTime: this.video.currentTime
       });
     }, this.config.sync.interval * 1000);
