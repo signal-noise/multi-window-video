@@ -12,7 +12,6 @@ const config = {
     }
   ],
   mute: false,
-  reloadOnEnd: true,
   sync: {
     interval: 2,
     threshold: 0.3,

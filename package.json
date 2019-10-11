@@ -4,7 +4,7 @@
   "description": "A tool to allow video to be triggered and synchronized across browser videos.",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" || exit true",
     "lint": "npm-run-all --parallel lint:*",

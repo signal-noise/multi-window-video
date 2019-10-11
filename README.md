@@ -36,9 +36,6 @@ const config = {
   // If true, all videos are muted, if false all but the first window will be muted.
   mute: false,
 
-  // See below
-  reloadOnEnd: false,
-
   sync: {
     // How often to check sync (2 seconds)
     interval: 2,
@@ -51,8 +48,6 @@ const config = {
   }
 };
 ```
-
-> **reloadOnEnd**: If `false`, it will rely on the browser natively looping the video. This can lead to sync issues. If `true`, when the video finishes it will force a reload of the video. Generally this leads to better sync but a 'flash' can be seen when reloading (fade to black to avoid this artifact).
 
 ## Getting started
 
