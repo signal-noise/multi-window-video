@@ -20,18 +20,22 @@ export default class Controller {
   setupVideo() {
     this.video.autoplay = true;
     if (this.config.muted || this.windowIndex > 0) this.video.muted = true;
-    if (!this.config.reloadOnEnd) this.video.loop = true;
 
-    if (this.windowIndex === 0 && this.config.reloadOnEnd) {
+    if (this.windowIndex === 0) {
       this.video.addEventListener("ended", () => {
+        const next =
+          this.currentVideo < this.config.videos.length - 1
+            ? this.currentVideo + 1
+            : 0;
+
         // Broadcast the index
         this.broadcaster.postMessage({
           type: "changeVideo",
-          videoIndex: this._currentVideo
+          videoIndex: next
         });
 
         // Change the video locally
-        this.currentVideo = this.currentVideo;
+        this.currentVideo = next;
       });
     }
 

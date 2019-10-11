@@ -33,7 +33,9 @@ module.exports = {
   },
   devServer: {
     stats: "minimal",
-    writeToDisk: true
+    writeToDisk: true,
+    open: true
+    // openPage: ["?window=0", "?window=1", "?window=2"]
   },
   entry: "./src/index.js",
   output: {
