@@ -2,41 +2,36 @@
 name: "\U0001F41B Report a bug"
 about: "Is something not working as you expect?"
 ---
-<!-- Please answer the following. -->
+
+<!-- Please answer the following. Issues that do not will be closed. -->
 
 > Clearly describe the bug
 
-e.g. "Data refuses to load when accessing via https..."
+e.g. "It does not support more than 8 screens..."
 
-> Which version of are you using? You can usually go to `/commit.txt` or `/version.txt` of the site you're viewing to see
+> Which version of multi-window-video are you using?
 
-e.g. `0.1.0` or `e821ca0`
+e.g. `0.0.1`
 
 > What did you expect to happen?
 
-e.g. "Data to load."
+e.g. "10 windows to load and keep in sync..."
 
 > What actually happened (e.g. what warnings or errors did you get)?
 
-Overview:
-e.g. "Contact Us button on Footer does not function as intended."
+e.g. "All screens are ok but not above 8..."
 
-Steps to recreate:
-e.g...
-1. Go to URL: https://website.com.
-2. Click on Contact Us on footer.
-3. Observe nothing happened.
-
-Environment:
-e.g. "Windows 10 x64 – Internet Explorer 11.295.18362.0"
-
-This issue is known to occur on:
-e.g. "All environments"
-
-Reproduction rate:
-E.g. "100% Consistently reproducible. Can reproduce every time attempted."
-
-<!-- Please add the "bug" label to this issue -->
 <!--
-Before posting, please check that the bug hasn't already been added previously (use the repo's issue search tool)
+Before posting, please check that the bug hasn't already been:
+1. fixed in the next release (https://github.com/signal-noise/multi-window-video/blob/master/CHANGELOG.md)
+2. discussed previously (https://github.com/signal-noise/multi-window-video/search)
+-->
+
+<!--
+You can help us fix the bug more quickly by:
+1. Figuring out what needs to be done and proposing it
+2. Submitting a PR with failing tests.
+
+Once the bug has been confirmed, you can help out further by:
+1. Writing the code and submitting a PR.
 -->

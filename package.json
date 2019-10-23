@@ -1,5 +1,5 @@
 {
-  "name": "multi-window-video",
+  "name": "@signal-noise/multi-window-video",
   "version": "0.0.1",
   "description": "A tool to allow video to be triggered and synchronized across browser videos.",
   "main": "src/index.js",
