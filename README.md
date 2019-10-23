@@ -55,7 +55,7 @@ Follow these steps to get up and running:
 
 1. Run `npm i` to install all dependencies.
 2. Run `npm start` to launch the system.
-3. Open as many browser windows as required and append a querystring onto URL to specify what `window` the browser is. E.g. a URL may be `http://localhost:8080?window=1`.
+3. By default starting this will launch three browser windows with the correct querystrings applied. E.g. a URL may be `http://localhost:8080?window=1`.
 
 > Note: Windows are zero indexed, so the first window is **0**.
 
