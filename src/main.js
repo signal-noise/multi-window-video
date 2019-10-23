@@ -57,7 +57,6 @@ export default class Controller {
             ev.data.currentTime > this.config.sync.ignore &&
             Math.abs(diff) > this.config.sync.threshold
           ) {
-            // console.log("RESYNC!");
             this.video.currentTime = ev.data.currentTime;
           }
           break;
