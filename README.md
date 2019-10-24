@@ -1,8 +1,9 @@
-# Multi Window Video
+# multi-window-video
+
+[![Actions Status][ci-image]][ci-url]
 
 A tool to allow videos to be triggered and synchronized across multiple browser windows. The user can press a key on the keyboard to trigger various videos.
 
-<!-- A screenshot of the project -->
 
 ## Contacts and documents
 
@@ -59,8 +60,5 @@ Follow these steps to get up and running:
 
 > Note: Windows are zero indexed, so the first window is **0**.
 
-## Rules and tools
-
-Are we using our standard approach to [workflow](https://www.notion.so/signalnoise/Workflow-dee5654bdde040a78352dbbceada5814), 
-[linting and tooling](https://www.notion.so/signalnoise/Tools-and-services-0293826f65894a3eabec01916aa7b318)? If not 
-specify the exceptions and rationale.
+[ci-image]: https://github.com/signal-noise/multi-window-video/workflows/node-ci/badge.svg
+[ci-url]: https://github.com/signal-noise/multi-window-video/actions
